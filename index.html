@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <button id="submit">Get Request</button>
+	<form>
+		<label>Employee id</label><br>
+  		<input type="number" id="emp_id" name="emp_id"><br>
+  		<label>Name</label><br>
+  		<input type="text" id="name" name="name"><br>
+  		<label>Manager</label><br>
+  		<input type="text" id="manager" name="manager"><br>
+		<label>Department</label><br>
+  		<input type="text" id="department" name="department"><br>
+		<label>Email Id</label><br>
+  		<input type="email" id="email" name="email"><br>
+		<label>Password</label><br>
+  		<input type="password" id="password" name="password"><br>
+		<label>Role</label><br>
+  		<input type="number" id="role" name="role"><br>
+		<button id="save">Save</button>
+	</form>
+</body>
+<script>
+	const submit = document.querySelector('#submit');
+	const login = async() => {
+		let response = await fetch('http://localhost:8080/allemp');
+		console.log(response);
+	}
+	submit.addEventListener('click', login);
+
+	const save = document.querySelector('#save');
+
+	const saveEmp = async() => {
+		var emp_id = document.getElementById("emp_id").value;
+		var name = document.getElementById("name").value;
+		var email = document.getElementById("email").value;
+		var department = document.getElementById("department").value;
+		var password = document.getElementById("password").value;
+		var role = document.getElementById("role").value;
+		var manager = document.getElementById("manager").value;
+
+		let response2 = await fetch("http://localhost:8080/saveemp",{
+			method:"POST",
+			headers:{
+				Accept:"application/json",
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({
+				"emp_id":emp_id,
+				"name":name,
+				"role":role,
+				"department":department,
+				"manager":manager,
+				"email":email,
+				"password":password
+			})
+		});
+		console.log(response);
+		console.log(response2);
+	}
+	save.addEventListener('click', saveEmp);
+</script>
+</html>

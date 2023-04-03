@@ -1,56 +1,43 @@
 package com.leavemanagement.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long empId;
 	
-	@NotNull(message = "Name cannot be null")
+//	@NotNull(message = "Name cannot be null")
     private String name;
 	
-    private int role = 2;
+    private int role;
     
-	@NotNull(message = "Department cannot be null")
+//	@NotNull(message = "Department cannot be null")
     private String department;
 	
-	@NotNull(message = "Manager Name cannot be null")
+//	@NotNull(message = "Manager Name cannot be null")
     private String manager;
     
-    @Email
-    @Column(unique = true)
-	@NotNull(message = "email cannot be null")
+//    @Email
+//    @Column(unique = true)
+//	@NotNull(message = "email cannot be null")
     private String email;
     
-    @NotNull(message = "password cannot be null")
+//    @NotNull(message = "password cannot be null")
 //	@JsonIgnore()
-	@JsonProperty(access = Access.WRITE_ONLY)
-	@Size(min = 5,max = 8,message = "password length should be between 5 & 8.")
+//	@JsonProperty(access = Access.WRITE_ONLY)
+//	@Size(min = 5,max = 8,message = "password length should be between 5 & 8.")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employees",orphanRemoval = true)
-	@JsonIgnore
-    List<Leaves> leavesDetails = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employees",orphanRemoval = true)
+//	@JsonIgnore
+//    List<Leaves> leavesDetails = new ArrayList<>();
     
 	public Employee() {
 		super();
@@ -122,19 +109,26 @@ public class Employee {
 		this.manager = manager;
 	}
 
-	public List<Leaves> getLeavesDetails() {
-		return leavesDetails;
-	}
-
-	public void setLeavesDetails(List<Leaves> leavesDetails) {
-		this.leavesDetails = leavesDetails;
+	public void setRole(int role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", name=" + name + ", role=" + role + ", department=" + department
-				+ ", manager=" + manager + ", email=" + email + ", password=" + password + ", leavesDetails="
-				+ leavesDetails + "]";
+				+ ", manager=" + manager + ", email=" + email + ", password=" + password + "]";
 	}
+
+//	public List<Leaves> getLeavesDetails() {
+//		return leavesDetails;
+//	}
+//
+//	public void setLeavesDetails(List<Leaves> leavesDetails) {
+//		this.leavesDetails = leavesDetails;
+//	}
+	
+	
+
+
 
 }
