@@ -5,34 +5,36 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long empId;
 	
-//	@NotNull(message = "Name cannot be null")
+	@NotNull(message = "Name cannot be null")
     private String name;
 	
     private int role;
     
-//	@NotNull(message = "Department cannot be null")
+	@NotNull(message = "Department cannot be null")
     private String department;
 	
-//	@NotNull(message = "Manager Name cannot be null")
+	@NotNull(message = "Manager Name cannot be null")
     private String manager;
     
 //    @Email
 //    @Column(unique = true)
-//	@NotNull(message = "email cannot be null")
+	@NotNull(message = "email cannot be null")
     private String email;
     
-//    @NotNull(message = "password cannot be null")
+    @NotNull(message = "password cannot be null")
 //	@JsonIgnore()
 //	@JsonProperty(access = Access.WRITE_ONLY)
-//	@Size(min = 5,max = 8,message = "password length should be between 5 & 8.")
+	@Size(min = 5,max = 8,message = "password length should be between 5 & 8.")
     private String password;
 
 //    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employees",orphanRemoval = true)
